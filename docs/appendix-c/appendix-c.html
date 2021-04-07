@@ -1,0 +1,1776 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix C - Plotly Refresher &#8212; Data Visualization with Plotly Express</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Appendix B - Pandas Refresher" href="../appendix-b/appendix-b.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dataviz.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Visualization with Plotly Express</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-01/chapter-01.html">
+   Chapter 1 - Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-02/chapter-02.html">
+   Chapter 2 - Census Costs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-03/chapter-03.html">
+   Chapter 3 - College Scorecard
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-04/chapter-04.html">
+   Chapter 4 - World Development Indicator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-a/appendix-a.html">
+   Appendix A - Python Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-b/appendix-b.html">
+   Appendix B - Pandas Refresher
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix C - Plotly Refresher
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  By <a href="https://wcj365.github.io">Dr. Chaojie Wang</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/appendix-c/appendix-c.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/wcj365/davaviz"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/wcj365/davaviz/issues/new?title=Issue%20on%20page%20%2Fappendix-c/appendix-c.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/wcj365/davaviz/master?urlpath=tree/docs/appendix-c/appendix-c.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://colab.research.google.com/hub/user-redirect/git-pull?repo=https://github.com/wcj365/davaviz&urlpath=tree/davaviz/docs/appendix-c/appendix-c.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="appendix-c-plotly-refresher">
+<h1>Appendix C - Plotly Refresher<a class="headerlink" href="#appendix-c-plotly-refresher" title="Permalink to this headline">¶</a></h1>
+<p><strong>US Population By States</strong>
+References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.indexmundi.com/facts/united-states/quick-facts/all-states/population#map">https://www.indexmundi.com/facts/united-states/quick-facts/all-states/population#map</a></p></li>
+</ul>
+<p>Data Souces:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.census.gov/data/datasets/time-series/demo/popest/2010s-state-total.html">https://www.census.gov/data/datasets/time-series/demo/popest/2010s-state-total.html</a></p></li>
+</ul>
+<p>This notebook demonstrates the use of following Python techniques:</p>
+<ul class="simple">
+<li><p>Web scrapting</p>
+<ul>
+<li><p>Pandas read_html</p></li>
+<li><p>Much simpler than requests + beautiful soup</p></li>
+</ul>
+</li>
+<li><p>Interactive data visualization with Plotly</p>
+<ul>
+<li><p>Plotly/Plotly Express</p></li>
+<li><p>Bar chart</p></li>
+<li><p>Choropleth map</p></li>
+</ul>
+</li>
+</ul>
+<p>Note:</p>
+<p>A choropleth map is a type of thematic map in which areas are shaded or patterned in proportion to a statistical variable that represents an aggregate summary of a geographic characteristic within each area, such as population density or per-capita income.</p>
+<p>From Greek, khōra place + plēthos multitude.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_URL</span> <span class="o">=</span> <span class="s2">&quot;https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rank in states &amp; territories, 2019</th>
+      <th>Rank in states &amp; territories, 2010</th>
+      <th>State</th>
+      <th>Population estimate, July 1, 2019[2]</th>
+      <th>Census population, April 1, 2010[3]</th>
+      <th>Percent change, 2010–2019[note 1]</th>
+      <th>Absolute change, 2010-2019</th>
+      <th>Total seats in the U.S. House of Representatives, 2013–2023</th>
+      <th>Estimated population per electoral vote, 2019[note 2]</th>
+      <th>Estimated population per House seat, 2019</th>
+      <th>Census population per House seat, 2010</th>
+      <th>Percent of the total U.S. population, 2018[note 3]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>39512223</td>
+      <td>37254523</td>
+      <td>6.1%</td>
+      <td>+2,257,700</td>
+      <td>NaN</td>
+      <td>718404</td>
+      <td>745514</td>
+      <td>702885</td>
+      <td>11.96%</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Texas</td>
+      <td>28995881</td>
+      <td>25145561</td>
+      <td>15.3%</td>
+      <td>+3,850,320</td>
+      <td>NaN</td>
+      <td>763050</td>
+      <td>805441</td>
+      <td>698503</td>
+      <td>8.68%</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Florida</td>
+      <td>21477737</td>
+      <td>18801310</td>
+      <td>14.2%</td>
+      <td>+2,676,427</td>
+      <td>NaN</td>
+      <td>740611</td>
+      <td>795472</td>
+      <td>696468</td>
+      <td>6.44%</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>New York</td>
+      <td>19453561</td>
+      <td>19378102</td>
+      <td>0.4%</td>
+      <td>+75,459</td>
+      <td>NaN</td>
+      <td>670812</td>
+      <td>720502</td>
+      <td>717707</td>
+      <td>5.91%</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Pennsylvania</td>
+      <td>12801989</td>
+      <td>12702379</td>
+      <td>0.8%</td>
+      <td>+99,610</td>
+      <td>NaN</td>
+      <td>640099</td>
+      <td>711222</td>
+      <td>705715</td>
+      <td>3.87%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;Pop&quot;</span><span class="p">]</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>California</td>
+      <td>39512223</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Texas</td>
+      <td>28995881</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Florida</td>
+      <td>21477737</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>New York</td>
+      <td>19453561</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pennsylvania</td>
+      <td>12801989</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Illinois</td>
+      <td>12671821</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Ohio</td>
+      <td>11689100</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Georgia</td>
+      <td>10617423</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>North Carolina</td>
+      <td>10488084</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Michigan</td>
+      <td>9986857</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>New Jersey</td>
+      <td>8882190</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Virginia</td>
+      <td>8535519</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Washington</td>
+      <td>7614893</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Arizona</td>
+      <td>7278717</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Massachusetts</td>
+      <td>6949503</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Tennessee</td>
+      <td>6833174</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Indiana</td>
+      <td>6732219</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Missouri</td>
+      <td>6137428</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maryland</td>
+      <td>6045680</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Wisconsin</td>
+      <td>5822434</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Colorado</td>
+      <td>5758736</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Minnesota</td>
+      <td>5639632</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>South Carolina</td>
+      <td>5148714</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Alabama</td>
+      <td>4903185</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Louisiana</td>
+      <td>4648794</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Kentucky</td>
+      <td>4467673</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Oregon</td>
+      <td>4217737</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Oklahoma</td>
+      <td>3956971</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Connecticut</td>
+      <td>3565287</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Utah</td>
+      <td>3205958</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Puerto Rico</td>
+      <td>3193694</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Iowa</td>
+      <td>3155070</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Nevada</td>
+      <td>3080156</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Arkansas</td>
+      <td>3017825</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Mississippi</td>
+      <td>2976149</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Kansas</td>
+      <td>2913314</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>New Mexico</td>
+      <td>2096829</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Nebraska</td>
+      <td>1934408</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Idaho</td>
+      <td>1787065</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>West Virginia</td>
+      <td>1792147</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Hawaii</td>
+      <td>1415872</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>New Hampshire</td>
+      <td>1359711</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Maine</td>
+      <td>1344212</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Montana</td>
+      <td>1068778</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Rhode Island</td>
+      <td>1059361</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Delaware</td>
+      <td>973764</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>South Dakota</td>
+      <td>884659</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>North Dakota</td>
+      <td>762062</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Alaska</td>
+      <td>731545</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>District of Columbia</td>
+      <td>705749</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Vermont</td>
+      <td>623989</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Wyoming</td>
+      <td>578759</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Guam</td>
+      <td>165718</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>U.S. Virgin Islands</td>
+      <td>104914</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>American Samoa</td>
+      <td>55641</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>Northern Mariana Islands</td>
+      <td>55194</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>Contiguous United States</td>
+      <td>325386357</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>The fifty states</td>
+      <td>327533795</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Fifty states + D.C.</td>
+      <td>328300544</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>Total U.S. (including D.C. and territories)</td>
+      <td>331814684</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">56</span><span class="p">,]</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>California</td>
+      <td>39512223</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Texas</td>
+      <td>28995881</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Florida</td>
+      <td>21477737</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>New York</td>
+      <td>19453561</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pennsylvania</td>
+      <td>12801989</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Illinois</td>
+      <td>12671821</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Ohio</td>
+      <td>11689100</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Georgia</td>
+      <td>10617423</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>North Carolina</td>
+      <td>10488084</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Michigan</td>
+      <td>9986857</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>New Jersey</td>
+      <td>8882190</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Virginia</td>
+      <td>8535519</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Washington</td>
+      <td>7614893</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Arizona</td>
+      <td>7278717</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Massachusetts</td>
+      <td>6949503</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Tennessee</td>
+      <td>6833174</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Indiana</td>
+      <td>6732219</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Missouri</td>
+      <td>6137428</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maryland</td>
+      <td>6045680</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Wisconsin</td>
+      <td>5822434</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Colorado</td>
+      <td>5758736</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Minnesota</td>
+      <td>5639632</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>South Carolina</td>
+      <td>5148714</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Alabama</td>
+      <td>4903185</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Louisiana</td>
+      <td>4648794</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Kentucky</td>
+      <td>4467673</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Oregon</td>
+      <td>4217737</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Oklahoma</td>
+      <td>3956971</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Connecticut</td>
+      <td>3565287</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Utah</td>
+      <td>3205958</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Puerto Rico</td>
+      <td>3193694</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Iowa</td>
+      <td>3155070</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Nevada</td>
+      <td>3080156</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Arkansas</td>
+      <td>3017825</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Mississippi</td>
+      <td>2976149</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Kansas</td>
+      <td>2913314</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>New Mexico</td>
+      <td>2096829</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Nebraska</td>
+      <td>1934408</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Idaho</td>
+      <td>1787065</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>West Virginia</td>
+      <td>1792147</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Hawaii</td>
+      <td>1415872</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>New Hampshire</td>
+      <td>1359711</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Maine</td>
+      <td>1344212</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Montana</td>
+      <td>1068778</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Rhode Island</td>
+      <td>1059361</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Delaware</td>
+      <td>973764</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>South Dakota</td>
+      <td>884659</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>North Dakota</td>
+      <td>762062</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Alaska</td>
+      <td>731545</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>District of Columbia</td>
+      <td>705749</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Vermont</td>
+      <td>623989</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Wyoming</td>
+      <td>578759</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Guam</td>
+      <td>165718</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>U.S. Virgin Islands</td>
+      <td>104914</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>American Samoa</td>
+      <td>55641</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>Northern Mariana Islands</td>
+      <td>55194</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Pop&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;US Population by States (2019 Estimate)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">tickangle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">showticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
+       <span class="c1"># title=&#39;Xaxis Name&#39;,</span>
+        <span class="n">tickmode</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>                <div id="dc2e908c-df0b-4454-b73b-4041a29cb057" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("dc2e908c-df0b-4454-b73b-4041a29cb057")) {                    Plotly.newPlot(                        "dc2e908c-df0b-4454-b73b-4041a29cb057",                        [{"alignmentgroup": "True", "hovertemplate": "Pop=%{x}<br>State=%{y}<extra></extra>", "legendgroup": "", "marker": {"color": "#636efa"}, "name": "", "offsetgroup": "", "orientation": "h", "showlegend": false, "textposition": "auto", "type": "bar", "x": [39512223, 28995881, 21477737, 19453561, 12801989, 12671821, 11689100, 10617423, 10488084, 9986857, 8882190, 8535519, 7614893, 7278717, 6949503, 6833174, 6732219, 6137428, 6045680, 5822434, 5758736, 5639632, 5148714, 4903185, 4648794, 4467673, 4217737, 3956971, 3565287, 3205958, 3193694, 3155070, 3080156, 3017825, 2976149, 2913314, 2096829, 1934408, 1787065, 1792147, 1415872, 1359711, 1344212, 1068778, 1059361, 973764, 884659, 762062, 731545, 705749, 623989, 578759, 165718, 104914, 55641, 55194], "xaxis": "x", "y": ["California", "Texas", "Florida", "New York", "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan", "New Jersey", "Virginia", "Washington", "Arizona", "Massachusetts", "Tennessee", "Indiana", "Missouri", "Maryland", "Wisconsin", "Colorado", "Minnesota", "South Carolina", "Alabama", "Louisiana", "Kentucky", "Oregon", "Oklahoma", "Connecticut", "Utah", "Puerto Rico", "Iowa", "Nevada", "Arkansas", "Mississippi", "Kansas", "New Mexico", "Nebraska", "Idaho", "West Virginia", "Hawaii", "New Hampshire", "Maine", "Montana", "Rhode Island", "Delaware", "South Dakota", "North Dakota", "Alaska", "District of Columbia", "Vermont", "Wyoming", "Guam", "U.S. Virgin Islands", "American Samoa", "Northern Mariana Islands"], "yaxis": "y"}],                        {"barmode": "relative", "height": 800, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "autotypenumbers": "strict", "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "US Population by States (2019 Estimate)"}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "Pop"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "showticklabels": true, "tickangle": 0, "tickmode": "linear", "title": {"text": "State"}, "type": "category"}},                        {"responsive": true}                    ).then(function(){
+
+var gd = document.getElementById('dc2e908c-df0b-4454-b73b-4041a29cb057');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">STATES_URL</span> <span class="o">=</span> <span class="s2">&quot;https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696&quot;</span>
+
+<span class="c1"># df_list2 = pd.read_html(STATES_URL) This return 15 tables, too many. </span>
+
+<span class="n">df_list2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">STATES_URL</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;data&#39;</span><span class="p">})</span>     <span class="c1"># pick one specific table based on an attribute</span>
+
+<span class="n">states_df</span> <span class="o">=</span> <span class="n">df_list2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>        <span class="c1"># This list only has one element (one table)</span>
+<span class="n">states_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Postal Code</th>
+      <th>FIPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>AL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>AK</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>AZ</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>AR</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>CA</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;ST&quot;</span><span class="p">,</span> <span class="s2">&quot;FIPS&quot;</span><span class="p">]</span>
+<span class="n">states_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>ST</th>
+      <th>FIPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>AL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>AK</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>AZ</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>AR</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>CA</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">states_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Pop</th>
+      <th>ST</th>
+      <th>FIPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>California</td>
+      <td>39512223</td>
+      <td>CA</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Texas</td>
+      <td>28995881</td>
+      <td>TX</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Florida</td>
+      <td>21477737</td>
+      <td>FL</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>New York</td>
+      <td>19453561</td>
+      <td>NY</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pennsylvania</td>
+      <td>12801989</td>
+      <td>PA</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Illinois</td>
+      <td>12671821</td>
+      <td>IL</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Ohio</td>
+      <td>11689100</td>
+      <td>OH</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Georgia</td>
+      <td>10617423</td>
+      <td>GA</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>North Carolina</td>
+      <td>10488084</td>
+      <td>NC</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Michigan</td>
+      <td>9986857</td>
+      <td>MI</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>New Jersey</td>
+      <td>8882190</td>
+      <td>NJ</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Virginia</td>
+      <td>8535519</td>
+      <td>VA</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Washington</td>
+      <td>7614893</td>
+      <td>WA</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Arizona</td>
+      <td>7278717</td>
+      <td>AZ</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Massachusetts</td>
+      <td>6949503</td>
+      <td>MA</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Tennessee</td>
+      <td>6833174</td>
+      <td>TN</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Indiana</td>
+      <td>6732219</td>
+      <td>IN</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Missouri</td>
+      <td>6137428</td>
+      <td>MO</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maryland</td>
+      <td>6045680</td>
+      <td>MD</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Wisconsin</td>
+      <td>5822434</td>
+      <td>WI</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Colorado</td>
+      <td>5758736</td>
+      <td>CO</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Minnesota</td>
+      <td>5639632</td>
+      <td>MN</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>South Carolina</td>
+      <td>5148714</td>
+      <td>SC</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Alabama</td>
+      <td>4903185</td>
+      <td>AL</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Louisiana</td>
+      <td>4648794</td>
+      <td>LA</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Kentucky</td>
+      <td>4467673</td>
+      <td>KY</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Oregon</td>
+      <td>4217737</td>
+      <td>OR</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Oklahoma</td>
+      <td>3956971</td>
+      <td>OK</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Connecticut</td>
+      <td>3565287</td>
+      <td>CT</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Utah</td>
+      <td>3205958</td>
+      <td>UT</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Puerto Rico</td>
+      <td>3193694</td>
+      <td>PR</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Iowa</td>
+      <td>3155070</td>
+      <td>IA</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Nevada</td>
+      <td>3080156</td>
+      <td>NV</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Arkansas</td>
+      <td>3017825</td>
+      <td>AR</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Mississippi</td>
+      <td>2976149</td>
+      <td>MS</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Kansas</td>
+      <td>2913314</td>
+      <td>KS</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>New Mexico</td>
+      <td>2096829</td>
+      <td>NM</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Nebraska</td>
+      <td>1934408</td>
+      <td>NE</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Idaho</td>
+      <td>1787065</td>
+      <td>ID</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>West Virginia</td>
+      <td>1792147</td>
+      <td>WV</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Hawaii</td>
+      <td>1415872</td>
+      <td>HI</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>New Hampshire</td>
+      <td>1359711</td>
+      <td>NH</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Maine</td>
+      <td>1344212</td>
+      <td>ME</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Montana</td>
+      <td>1068778</td>
+      <td>MT</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Rhode Island</td>
+      <td>1059361</td>
+      <td>RI</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Delaware</td>
+      <td>973764</td>
+      <td>DE</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>South Dakota</td>
+      <td>884659</td>
+      <td>SD</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>North Dakota</td>
+      <td>762062</td>
+      <td>ND</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Alaska</td>
+      <td>731545</td>
+      <td>AK</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Vermont</td>
+      <td>623989</td>
+      <td>VT</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Wyoming</td>
+      <td>578759</td>
+      <td>WY</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Guam</td>
+      <td>165718</td>
+      <td>GU</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>American Samoa</td>
+      <td>55641</td>
+      <td>AS</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Northern Mariana Islands</td>
+      <td>55194</td>
+      <td>MP</td>
+      <td>69</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span>  
+                    <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;ST&#39;</span><span class="p">,</span> 
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Pop&#39;</span><span class="p">,</span>
+                    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+                    <span class="n">scope</span><span class="o">=</span><span class="s2">&quot;usa&quot;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;State&quot;</span><span class="p">,</span>
+                    <span class="n">locationmode</span> <span class="o">=</span> <span class="s1">&#39;USA-states&#39;</span><span class="p">,</span>
+                    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ST&#39;</span><span class="p">:</span><span class="s1">&#39;State&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">#fig.update_layout(margin={&quot;r&quot;:0,&quot;t&quot;:0,&quot;l&quot;:0,&quot;b&quot;:0})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>                <div id="6ce662e7-fb1b-4454-a0cf-76add99930c2" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("6ce662e7-fb1b-4454-a0cf-76add99930c2")) {                    Plotly.newPlot(                        "6ce662e7-fb1b-4454-a0cf-76add99930c2",                        [{"coloraxis": "coloraxis", "geo": "geo", "hovertemplate": "<b>%{hovertext}</b><br><br>State=%{location}<br>Pop=%{z}<extra></extra>", "hovertext": ["California", "Texas", "Florida", "New York", "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan", "New Jersey", "Virginia", "Washington", "Arizona", "Massachusetts", "Tennessee", "Indiana", "Missouri", "Maryland", "Wisconsin", "Colorado", "Minnesota", "South Carolina", "Alabama", "Louisiana", "Kentucky", "Oregon", "Oklahoma", "Connecticut", "Utah", "Puerto Rico", "Iowa", "Nevada", "Arkansas", "Mississippi", "Kansas", "New Mexico", "Nebraska", "Idaho", "West Virginia", "Hawaii", "New Hampshire", "Maine", "Montana", "Rhode Island", "Delaware", "South Dakota", "North Dakota", "Alaska", "Vermont", "Wyoming", "Guam", "American Samoa", "Northern Mariana Islands"], "locationmode": "USA-states", "locations": ["CA", "TX", "FL", "NY", "PA", "IL", "OH", "GA", "NC", "MI", "NJ", "VA", "WA", "AZ", "MA", "TN", "IN", "MO", "MD", "WI", "CO", "MN", "SC", "AL", "LA", "KY", "OR", "OK", "CT", "UT", "PR", "IA", "NV", "AR", "MS", "KS", "NM", "NE", "ID", "WV", "HI", "NH", "ME", "MT", "RI", "DE", "SD", "ND", "AK", "VT", "WY", "GU", "AS", "MP"], "name": "", "type": "choropleth", "z": [39512223, 28995881, 21477737, 19453561, 12801989, 12671821, 11689100, 10617423, 10488084, 9986857, 8882190, 8535519, 7614893, 7278717, 6949503, 6833174, 6732219, 6137428, 6045680, 5822434, 5758736, 5639632, 5148714, 4903185, 4648794, 4467673, 4217737, 3956971, 3565287, 3205958, 3193694, 3155070, 3080156, 3017825, 2976149, 2913314, 2096829, 1934408, 1787065, 1792147, 1415872, 1359711, 1344212, 1068778, 1059361, 973764, 884659, 762062, 731545, 623989, 578759, 165718, 55641, 55194]}],                        {"coloraxis": {"colorbar": {"title": {"text": "Pop"}}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]]}, "geo": {"center": {}, "domain": {"x": [0.0, 1.0], "y": [0.0, 1.0]}, "scope": "usa"}, "legend": {"tracegroupgap": 0}, "margin": {"t": 60}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "autotypenumbers": "strict", "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}},                        {"responsive": true}                    ).then(function(){
+
+var gd = document.getElementById('6ce662e7-fb1b-4454-a0cf-76add99930c2');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./appendix-c"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../appendix-b/appendix-b.html" title="previous page">Appendix B - Pandas Refresher</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Chaojie Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

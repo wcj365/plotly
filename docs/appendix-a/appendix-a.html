@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix A - Python Refresher &#8212; Data Visualization with Plotly Express</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix B - Pandas Refresher" href="../appendix-b/appendix-b.html" />
+    <link rel="prev" title="Chapter 4 - World Development Indicator" href="../chapter-04/chapter-04.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dataviz.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Visualization with Plotly Express</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-01/chapter-01.html">
+   Chapter 1 - Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-02/chapter-02.html">
+   Chapter 2 - Census Costs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-03/chapter-03.html">
+   Chapter 3 - College Scorecard
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-04/chapter-04.html">
+   Chapter 4 - World Development Indicator
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix A - Python Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-b/appendix-b.html">
+   Appendix B - Pandas Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-c/appendix-c.html">
+   Appendix C - Plotly Refresher
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  By <a href="https://wcj365.github.io">Dr. Chaojie Wang</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/appendix-a/appendix-a.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/wcj365/davaviz"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/wcj365/davaviz/issues/new?title=Issue%20on%20page%20%2Fappendix-a/appendix-a.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/wcj365/davaviz/master?urlpath=tree/docs/appendix-a/appendix-a.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://colab.research.google.com/hub/user-redirect/git-pull?repo=https://github.com/wcj365/davaviz&urlpath=tree/davaviz/docs/appendix-a/appendix-a.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-data-exploration">
+   1. Basic Data Exploration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-out-the-time-span-unique-years">
+   2. Find out the time span (unique years)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-you-know-the-changes-were-successful">
+   3. How do you know the changes were successful?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-one">
+     Method one
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-two">
+     Method two
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-three">
+     Method three
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saved-the-corrected-data-to-a-file">
+   4. Saved the corrected data to a file
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="appendix-a-python-refresher">
+<h1>Appendix A - Python Refresher<a class="headerlink" href="#appendix-a-python-refresher" title="Permalink to this headline">¶</a></h1>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Static</p></th>
+<th class="head"><p>Interactive</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Low-level</strong></p></td>
+<td><p>Matplotlib</p></td>
+<td><p>Plotly</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>High-level</strong></p></td>
+<td><p>Seaborn</p></td>
+<td><p>Plotly Express, Altair, Bokeh</p></td>
+</tr>
+</tbody>
+</table>
+<p>This appendix provides a real-world example of data processing and can be used to test or refresh your Python knowledge.</p>
+<p>FDA publishes medical device recalls dataset on regular basis. Thedata set has a field called “event_date_initiated”.
+This is the date when a medical device recall is initiated. We extracted this field and saved the data to the file event_date_initiated.csv for exploration and processing.</p>
+<p>This example uses the following Python basic concepts:</p>
+<ul class="simple">
+<li><p>File input and output</p>
+<ul>
+<li><p>Read data from  a text file</p></li>
+<li><p>Write data to a text file</p></li>
+</ul>
+</li>
+<li><p>if/elif control flow</p></li>
+<li><p>for loops</p></li>
+<li><p>String operations</p>
+<ul>
+<li><p>split()</p></li>
+<li><p>strip()</p></li>
+<li><p>replace()</p></li>
+<li><p>startswith()</p></li>
+<li><p>indexing</p></li>
+</ul>
+</li>
+<li><p>List operation</p>
+<ul>
+<li><p>append()</p></li>
+<li><p>join()</p></li>
+<li><p>indexing</p></li>
+</ul>
+</li>
+<li><p>List comprehension</p></li>
+<li><p>Set</p>
+<ul>
+<li><p>Members in a set must be unique</p></li>
+<li><p>convert a list to a set</p></li>
+</ul>
+</li>
+<li><p>f-string substitution</p></li>
+<li><p>build-in functions</p>
+<ul>
+<li><p>Print()</p></li>
+<li><p>len()</p></li>
+<li><p>type()</p></li>
+<li><p>range(start, stop, step)</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="basic-data-exploration">
+<h2>1. Basic Data Exploration<a class="headerlink" href="#basic-data-exploration" title="Permalink to this headline">¶</a></h2>
+<p><strong>Read the file and assign the lines to a list.</strong></p>
+<ul class="simple">
+<li><p>Option “r” for read</p></li>
+<li><p>Option “t” for text</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/event_date_initiated.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">date_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Find out what type of object the date_list is</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">date_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Find out the number of elements in the list</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">date_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>43750
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Display the first five elements</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;event_date_initiated\n&#39;,
+ &#39;2002-12-26\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2004-01-27\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ignore the first element</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list</span> <span class="o">=</span> <span class="n">date_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">date_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2002-12-26\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2004-01-27\n&#39;,
+ &#39;2003-12-10\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Display the last five elements</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2020-09-09\n&#39;,
+ &#39;2020-07-06\n&#39;,
+ &#39;2020-01-17\n&#39;,
+ &#39;2020-05-28\n&#39;,
+ &#39;2020-08-20\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Remove the new line “\n” using List Comprehension</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">date_list</span><span class="p">]</span>
+<span class="n">date_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2002-12-26&#39;, &#39;2003-03-25&#39;, &#39;2003-03-25&#39;, &#39;2004-01-27&#39;, &#39;2003-12-10&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="find-out-the-time-span-unique-years">
+<h2>2. Find out the time span (unique years)<a class="headerlink" href="#find-out-the-time-span-unique-years" title="Permalink to this headline">¶</a></h2>
+<p><strong>Extract the year from the date</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">date_list</span><span class="p">]</span>
+<span class="n">year_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2002&#39;, &#39;2003&#39;, &#39;2003&#39;, &#39;2004&#39;, &#39;2003&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">year_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>43749
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Get unique years using set() function</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">year_list</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">year_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year_set</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0010&#39;,
+ &#39;0012&#39;,
+ &#39;0013&#39;,
+ &#39;1997&#39;,
+ &#39;1998&#39;,
+ &#39;2000&#39;,
+ &#39;2001&#39;,
+ &#39;2002&#39;,
+ &#39;2003&#39;,
+ &#39;2004&#39;,
+ &#39;2005&#39;,
+ &#39;2006&#39;,
+ &#39;2007&#39;,
+ &#39;2008&#39;,
+ &#39;2009&#39;,
+ &#39;2010&#39;,
+ &#39;2011&#39;,
+ &#39;2012&#39;,
+ &#39;2013&#39;,
+ &#39;2014&#39;,
+ &#39;2015&#39;,
+ &#39;2016&#39;,
+ &#39;2017&#39;,
+ &#39;2018&#39;,
+ &#39;2019&#39;,
+ &#39;2020&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Replace the year 0010, 0012, 0013 with 2010, 2012, 2013</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list2</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">init_date</span> <span class="ow">in</span> <span class="n">date_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">init_date</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">):</span>
+        <span class="n">date_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_date</span><span class="p">)</span>
+        
+<span class="n">date_list2</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2002-12-26&#39;,
+ &#39;2003-03-25&#39;,
+ &#39;2003-03-25&#39;,
+ &#39;2004-01-27&#39;,
+ &#39;2003-12-10&#39;,
+ &#39;2004-01-27&#39;,
+ &#39;2003-03-20&#39;,
+ &#39;2003-08-08&#39;,
+ &#39;2000-11-16&#39;,
+ &#39;2002-10-31&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-do-you-know-the-changes-were-successful">
+<h2>3. How do you know the changes were successful?<a class="headerlink" href="#how-do-you-know-the-changes-were-successful" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="method-one">
+<h3>Method one<a class="headerlink" href="#method-one" title="Permalink to this headline">¶</a></h3>
+<p>Find the new unique list of years</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year_list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">date_list2</span><span class="p">]</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">year_list2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1997&#39;,
+ &#39;1998&#39;,
+ &#39;2000&#39;,
+ &#39;2001&#39;,
+ &#39;2002&#39;,
+ &#39;2003&#39;,
+ &#39;2004&#39;,
+ &#39;2005&#39;,
+ &#39;2006&#39;,
+ &#39;2007&#39;,
+ &#39;2008&#39;,
+ &#39;2009&#39;,
+ &#39;2010&#39;,
+ &#39;2011&#39;,
+ &#39;2012&#39;,
+ &#39;2013&#39;,
+ &#39;2014&#39;,
+ &#39;2015&#39;,
+ &#39;2016&#39;,
+ &#39;2017&#39;,
+ &#39;2018&#39;,
+ &#39;2019&#39;,
+ &#39;2020&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="method-two">
+<h3>Method two<a class="headerlink" href="#method-two" title="Permalink to this headline">¶</a></h3>
+<p>Rewrite the previous block of code to display conversion results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_list2</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">date_list</span><span class="p">)):</span>
+    <span class="n">init_date</span> <span class="o">=</span> <span class="n">date_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">init_date</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;found and corrected problemtic date </span><span class="si">{</span><span class="n">init_date</span><span class="si">}</span><span class="s2"> at position </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">date_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">date_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>found and corrected problemtic date 0012-12-06 at position 2290
+found and corrected problemtic date 0013-11-26 at position 2344
+found and corrected problemtic date 0012-11-30 at position 2432
+found and corrected problemtic date 0013-05-16 at position 5267
+found and corrected problemtic date 0013-03-05 at position 6045
+found and corrected problemtic date 0013-05-16 at position 6801
+found and corrected problemtic date 0012-12-13 at position 19636
+found and corrected problemtic date 0013-04-12 at position 19910
+found and corrected problemtic date 0013-03-05 at position 25453
+found and corrected problemtic date 0013-11-25 at position 27812
+found and corrected problemtic date 0013-12-13 at position 27855
+found and corrected problemtic date 0013-04-11 at position 29256
+found and corrected problemtic date 0013-03-05 at position 32382
+found and corrected problemtic date 0013-04-12 at position 33046
+found and corrected problemtic date 0010-08-17 at position 36031
+found and corrected problemtic date 0013-03-05 at position 36657
+found and corrected problemtic date 0013-03-05 at position 41312
+found and corrected problemtic date 0013-03-05 at position 41340
+found and corrected problemtic date 0013-03-05 at position 41345
+found and corrected problemtic date 0013-03-05 at position 41657
+found and corrected problemtic date 0013-03-05 at position 41681
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The old date is </span><span class="si">{</span><span class="n">date_list</span><span class="p">[</span><span class="mi">41681</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The old date is 0013-03-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The old date is </span><span class="si">{</span><span class="n">date_list2</span><span class="p">[</span><span class="mi">41681</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The old date is 2013-03-05
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="method-three">
+<h3>Method three<a class="headerlink" href="#method-three" title="Permalink to this headline">¶</a></h3>
+<p>Compare the two lists and display the differences</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">date_list</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">date_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">date_list2</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">date_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">date_list2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0012-12-06 -&gt; 2012-12-06
+0013-11-26 -&gt; 2013-11-26
+0012-11-30 -&gt; 2012-11-30
+0013-05-16 -&gt; 2013-05-16
+0013-03-05 -&gt; 2013-03-05
+0013-05-16 -&gt; 2013-05-16
+0012-12-13 -&gt; 2012-12-13
+0013-04-12 -&gt; 2013-04-12
+0013-03-05 -&gt; 2013-03-05
+0013-11-25 -&gt; 2013-11-25
+0013-12-13 -&gt; 2013-12-13
+0013-04-11 -&gt; 2013-04-11
+0013-03-05 -&gt; 2013-03-05
+0013-04-12 -&gt; 2013-04-12
+0010-08-17 -&gt; 2010-08-17
+0013-03-05 -&gt; 2013-03-05
+0013-03-05 -&gt; 2013-03-05
+0013-03-05 -&gt; 2013-03-05
+0013-03-05 -&gt; 2013-03-05
+0013-03-05 -&gt; 2013-03-05
+0013-03-05 -&gt; 2013-03-05
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="saved-the-corrected-data-to-a-file">
+<h2>4. Saved the corrected data to a file<a class="headerlink" href="#saved-the-corrected-data-to-a-file" title="Permalink to this headline">¶</a></h2>
+<p><strong>Save the data to a text file</strong></p>
+<ul class="simple">
+<li><p>Option “w” for write</p></li>
+<li><p>Option “t” for text</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;event_date_initiated_corrected.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">date_list2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Read the saved file back in to make sure it works.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;event_date_initiated_corrected.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">corrected_date_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> 
+    
+<span class="n">corrected_date_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2002-12-26\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2003-03-25\n&#39;,
+ &#39;2004-01-27\n&#39;,
+ &#39;2003-12-10\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<a style='text-decoration:none;line-height:16px;display:flex;color:#5B5B62;padding:10px;justify-content:end;' href='https://deepnote.com?utm_source=created-in-deepnote-cell&projectId=d6dd3d4a-0a86-4798-8e4d-ea84481681f7' target="_blank">
+<img alt='Created in deepnote.com' style='display:inline;max-height:16px;margin:0px;margin-right:7.5px;' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iODBweCIgaGVpZ2h0PSI4MHB4IiB2aWV3Qm94PSIwIDAgODAgODAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDU0LjEgKDc2NDkwKSAtIGh0dHBzOi8vc2tldGNoYXBwLmNvbSAtLT4KICAgIDx0aXRsZT5Hcm91cCAzPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IkxhbmRpbmciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJBcnRib2FyZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyMzUuMDAwMDAwLCAtNzkuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJHcm91cC0zIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMjM1LjAwMDAwMCwgNzkuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8cG9seWdvbiBpZD0iUGF0aC0yMCIgZmlsbD0iIzAyNjVCNCIgcG9pbnRzPSIyLjM3NjIzNzYyIDgwIDM4LjA0NzY2NjcgODAgNTcuODIxNzgyMiA3My44MDU3NTkyIDU3LjgyMTc4MjIgMzIuNzU5MjczOSAzOS4xNDAyMjc4IDMxLjY4MzE2ODMiPjwvcG9seWdvbj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNS4wMDc3MTgsODAgQzQyLjkwNjIwMDcsNzYuNDU0OTM1OCA0Ny41NjQ5MTY3LDcxLjU0MjI2NzEgNDguOTgzODY2LDY1LjI2MTk5MzkgQzUxLjExMjI4OTksNTUuODQxNTg0MiA0MS42NzcxNzk1LDQ5LjIxMjIyODQgMjUuNjIzOTg0Niw0OS4yMTIyMjg0IEMyNS40ODQ5Mjg5LDQ5LjEyNjg0NDggMjkuODI2MTI5Niw0My4yODM4MjQ4IDM4LjY0NzU4NjksMzEuNjgzMTY4MyBMNzIuODcxMjg3MSwzMi41NTQ0MjUgTDY1LjI4MDk3Myw2Ny42NzYzNDIxIEw1MS4xMTIyODk5LDc3LjM3NjE0NCBMMzUuMDA3NzE4LDgwIFoiIGlkPSJQYXRoLTIyIiBmaWxsPSIjMDAyODY4Ij48L3BhdGg+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCwzNy43MzA0NDA1IEwyNy4xMTQ1MzcsMC4yNTcxMTE0MzYgQzYyLjM3MTUxMjMsLTEuOTkwNzE3MDEgODAsMTAuNTAwMzkyNyA4MCwzNy43MzA0NDA1IEM4MCw2NC45NjA0ODgyIDY0Ljc3NjUwMzgsNzkuMDUwMzQxNCAzNC4zMjk1MTEzLDgwIEM0Ny4wNTUzNDg5LDc3LjU2NzA4MDggNTMuNDE4MjY3Nyw3MC4zMTM2MTAzIDUzLjQxODI2NzcsNTguMjM5NTg4NSBDNTMuNDE4MjY3Nyw0MC4xMjg1NTU3IDM2LjMwMzk1NDQsMzcuNzMwNDQwNSAyNS4yMjc0MTcsMzcuNzMwNDQwNSBDMTcuODQzMDU4NiwzNy43MzA0NDA1IDkuNDMzOTE5NjYsMzcuNzMwNDQwNSAwLDM3LjczMDQ0MDUgWiIgaWQ9IlBhdGgtMTkiIGZpbGw9IiMzNzkzRUYiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+' > </img>
+Created in <span style='font-weight:600;margin-left:4px;'>Deepnote</span></a></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./appendix-a"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../chapter-04/chapter-04.html" title="previous page">Chapter 4 - World Development Indicator</a>
+    <a class='right-next' id="next-link" href="../appendix-b/appendix-b.html" title="next page">Appendix B - Pandas Refresher</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Chaojie Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

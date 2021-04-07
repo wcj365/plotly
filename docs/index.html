@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Viz with Plotly Express &#8212; Data Visualization with Plotly Express</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 1 - Introduction" href="chapter-01/chapter-01.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="#">
+  
+  <img src="_static/dataviz.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Visualization with Plotly Express</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter-01/chapter-01.html">
+   Chapter 1 - Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter-02/chapter-02.html">
+   Chapter 2 - Census Costs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter-03/chapter-03.html">
+   Chapter 3 - College Scorecard
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter-04/chapter-04.html">
+   Chapter 4 - World Development Indicator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix-a/appendix-a.html">
+   Appendix A - Python Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix-b/appendix-b.html">
+   Appendix B - Pandas Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix-c/appendix-c.html">
+   Appendix C - Plotly Refresher
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  By <a href="https://wcj365.github.io">Dr. Chaojie Wang</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/wcj365/davaviz"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/wcj365/davaviz/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-us-census-costs">
+     Example 1 - US Census Costs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2-us-college-scorecard">
+     Example 2 - US College Scorecard
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-3-us-medicare-claims">
+     Example 3 - US Medicare Claims
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-4-global-economics">
+     Example 4 - Global Economics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-5-medical-device-recalls">
+     Example 5 - Medical Device Recalls
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-6-six-dimensions-of-national-culture">
+     Example 6 - Six Dimensions of National Culture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#appendix-a-python-refresher">
+     Appendix A - Python Refresher
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#appendix-b-pandas-refresher">
+     Appendix B - Pandas Refresher
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#appendix-c-plotly-refresher">
+     Appendix C - Plotly Refresher
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="data-viz-with-plotly-express">
+<h1>Data Viz with Plotly Express<a class="headerlink" href="#data-viz-with-plotly-express" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This book introduce readers to Plotly Express, a Python library for interactive data visualization.
+Readers should have basic knowledge of Python and Pandas. As a refresher, appendix A provides
+a brief overview of Python and appendix B provides a brief overview of Pandas.</p>
+<p>There are no shortage of data visualzation libraries in Python. Visualization libraries can be classified
+using two dimensions - Static vs Interactive and Low-level vs High-level.</p>
+<p>Static visualization library only produce static charts while interactive visualization produces
+interactive charts for exploration. The latter also support the download of the interactive chars
+as static images for embedding in publication.</p>
+<p>Low-level libraries provide more flexibility for customization of charts at the cost of
+complexity and learning curve. High-level libraries are simpler and easier to learn and use with less flexibility
+and functionality. The latter requires fewer lines of code than the former.</p>
+<p>Table 1 provide a summary of comparison.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Static</p></th>
+<th class="head"><p>Interactive</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Low-level</strong></p></td>
+<td><p>Matplotlib</p></td>
+<td><p>Plotly</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>High-level</strong></p></td>
+<td><p>Seaborn</p></td>
+<td><p><em>Plotly Express</em>, Altair, Bokeh</p></td>
+</tr>
+</tbody>
+</table>
+<p>As depicted in table 1, Plotly Express is a high-level interactive library and is built
+on top of Plotly, a low-level interactive visualization library. Plotly is the best of both
+world. It is simple and easy to learn and use. When you need the flexibity for more advanced
+functionality, it provides access to the low-level functions of Plotly. Another benefit it is
+a part of Dash, a Python library for generating interactive dashboards. Interactive dashboards
+can be published as websites for sharing on the Internet.</p>
+<p>For more information about Plotly, Plotly Express, and Dash, check out the website:
+<a class="reference external" href="http://www.plotly.com">http://www.plotly.com</a></p>
+<p>This online book is a live book and can be read and run. Readers can interact with the exmple
+visualizations and can also open it in Google Colab to run it or download and run it in a Jupyter
+Notebook environment of choice.</p>
+<p>This book provides minimal coverage on data preparation in order to
+provide the focused coverage on Plotly Express. THere are plenty of resources available on data preparation
+using Pandas including videos, blog posts, and books.</p>
+<p>This book is organized by hands-on examples from a variety of problem domains from education to
+healthcare and from national culture to world development. Social researchers will find the topics
+interesting and relevant. Exposure to social issues will be helpful for technical professionals include data scientists
+and engineers.</p>
+<p>Structure of each example:</p>
+<ol class="simple">
+<li><p>Summary</p>
+<ul class="simple">
+<li><p>Problem description</p></li>
+<li><p>Data source</p></li>
+<li><p>Technique used</p></li>
+</ul>
+</li>
+<li><p>Data Collection</p></li>
+<li><p>Data Preparation</p></li>
+<li><p>Data Visualization</p></li>
+</ol>
+<p>Domains:</p>
+<ul class="simple">
+<li><p>Healthcare (FDA medical device recall, COVID-19)</p></li>
+<li><p>Economics (Capminer, Census Costs)</p></li>
+<li><p>Demograpy/Population</p></li>
+<li><p>Cultural(Donald Trump Tweets)</p></li>
+<li><p>Education (College scorecard)</p></li>
+</ul>
+<div class="section" id="example-1-us-census-costs">
+<h3>Example 1 - US Census Costs<a class="headerlink" href="#example-1-us-census-costs" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example-2-us-college-scorecard">
+<h3>Example 2 - US College Scorecard<a class="headerlink" href="#example-2-us-college-scorecard" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example-3-us-medicare-claims">
+<h3>Example 3 - US Medicare Claims<a class="headerlink" href="#example-3-us-medicare-claims" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example-4-global-economics">
+<h3>Example 4 - Global Economics<a class="headerlink" href="#example-4-global-economics" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example-5-medical-device-recalls">
+<h3>Example 5 - Medical Device Recalls<a class="headerlink" href="#example-5-medical-device-recalls" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="example-6-six-dimensions-of-national-culture">
+<h3>Example 6 - Six Dimensions of National Culture<a class="headerlink" href="#example-6-six-dimensions-of-national-culture" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="appendix-a-python-refresher">
+<h3>Appendix A - Python Refresher<a class="headerlink" href="#appendix-a-python-refresher" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="appendix-b-pandas-refresher">
+<h3>Appendix B - Pandas Refresher<a class="headerlink" href="#appendix-b-pandas-refresher" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="appendix-c-plotly-refresher">
+<h3>Appendix C - Plotly Refresher<a class="headerlink" href="#appendix-c-plotly-refresher" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://executablebooks.org/en/latest/gallery.html">https://executablebooks.org/en/latest/gallery.html</a></p></li>
+<li><p><a class="reference external" href="https://niharika412.github.io/">https://niharika412.github.io/</a></p></li>
+<li><p><a class="reference external" href="https://ubc-dsci.github.io/jupyterdays/index.html">https://ubc-dsci.github.io/jupyterdays/index.html</a></p></li>
+<li><p><a class="reference external" href="https://www.thetrumparchive.com/faq">https://www.thetrumparchive.com/faq</a></p></li>
+<li><p><a class="reference external" href="https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html">https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html</a></p></li>
+<li><p><a class="reference external" href="http://atc.berkeley.edu/201/readings/Tufte_BE_2006.pdf">http://atc.berkeley.edu/201/readings/Tufte_BE_2006.pdf</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='right-next' id="next-link" href="chapter-01/chapter-01.html" title="next page">Chapter 1 - Introduction</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Chaojie Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

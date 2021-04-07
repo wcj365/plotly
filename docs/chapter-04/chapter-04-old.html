@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 4 - World Development Indicator &#8212; Data Visualization with Plotly Express</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/dataviz.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Visualization with Plotly Express</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-01/chapter-01.html">
+   Chapter 1 - Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-02/chapter-02.html">
+   Chapter 2 - Census Costs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter-03/chapter-03.html">
+   Chapter 3 - College Scorecard
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter-04.html">
+   Chapter 4 - World Development Indicator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-a/appendix-a.html">
+   Appendix A - Python Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-b/appendix-b.html">
+   Appendix B - Pandas Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix-c/appendix-c.html">
+   Appendix C - Plotly Refresher
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  By <a href="https://wcj365.github.io">Dr. Chaojie Wang</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter-04/chapter-04-old.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/wcj365/davaviz"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/wcj365/davaviz/issues/new?title=Issue%20on%20page%20%2Fchapter-04/chapter-04-old.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/wcj365/davaviz/master?urlpath=tree/docs/chapter-04/chapter-04-old.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://colab.research.google.com/hub/user-redirect/git-pull?repo=https://github.com/wcj365/davaviz&urlpath=tree/davaviz/docs/chapter-04/chapter-04-old.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-additional-variables-for-regions-and-sub-regions">
+   Add additional variables for regions and sub-regions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-different-approach">
+   A different Approach
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-4-world-development-indicator">
+<h1>Chapter 4 - World Development Indicator<a class="headerlink" href="#chapter-4-world-development-indicator" title="Permalink to this headline">¶</a></h1>
+<p><strong>Data Source</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://datacatalog.worldbank.org/dataset/world-development-indicators">https://datacatalog.worldbank.org/dataset/world-development-indicators</a></p></li>
+<li><p><a class="reference external" href="https://unstats.un.org/unsd/methodology/m49/overview">https://unstats.un.org/unsd/methodology/m49/overview</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/WDIData.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">c05f8eb6823b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/WDIData.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span> 
+<span class="ne">--&gt; </span><span class="mi">610</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> 
+<span class="g g-Whitespace">    </span><span class="mi">612</span> 
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> 
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">462</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> 
+<span class="g g-Whitespace">    </span><span class="mi">464</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">817</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">818</span> 
+<span class="ne">--&gt; </span><span class="mi">819</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">820</span> 
+<span class="g g-Whitespace">    </span><span class="mi">821</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1050</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1865</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1866</span>         <span class="c1"># open handles</span>
+<span class="ne">-&gt; </span><span class="mi">1867</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1868</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1869</span>         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="s2">&quot;compression&quot;</span><span class="p">):</span>
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/parsers.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1366</span>             <span class="n">compression</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1367</span>             <span class="n">memory_map</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="ne">-&gt; </span><span class="mi">1368</span>             <span class="n">storage_options</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1369</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1370</span> 
+
+<span class="nn">/shared-libs/python3.7/py/lib/python3.7/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">645</span>                 <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">646</span>                 <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">647</span>                 <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">649</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/WDIData.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Drop the last unuseful column</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Find out how many unique indicators</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1,440 indicators are a lot. Save them to a file for reference</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Indicator Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Indicator Code&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;indicators.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Eye ball the file and pick the three indicators of interest:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://SP.DYN.LE00.IN">SP.DYN.LE00.IN</a></p>
+<ul>
+<li><p>Life expectancy at birth, total (years)</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="http://NY.GDP.PCAP.PP.CD">NY.GDP.PCAP.PP.CD</a></p>
+<ul>
+<li><p>GDP per capita, PPP (current international $)</p></li>
+</ul>
+</li>
+<li><p>SP.POP.TOTL</p>
+<ul>
+<li><p>Population, total</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Filter the data for GDP per capita</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;NY.GDP.PCAP.PP.CD&quot;</span><span class="p">]</span>
+<span class="n">df_gdp</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_gdp</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Melt the dataframe for easy analysis</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_gdp_melted</span> <span class="o">=</span> <span class="n">df_gdp</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="n">df_gdp</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> 
+                            <span class="n">value_vars</span><span class="o">=</span><span class="n">df_gdp</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> 
+                            <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> 
+                            <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;GDP Per Capita&#39;</span><span class="p">)</span>
+<span class="n">df_gdp_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Drop the unnecessary columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_gdp_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Indicator Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Indicator Code&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_gdp_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Filter the data for life expectancy</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_life</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SP.DYN.LE00.IN&quot;</span><span class="p">]</span>
+<span class="n">df_life</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_life</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Melt the dataframe for easy analysis</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_life_melted</span> <span class="o">=</span> <span class="n">df_life</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="n">df_life</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> 
+                              <span class="n">value_vars</span><span class="o">=</span><span class="n">df_life</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> 
+                              <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> 
+                              <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Life Expectancy&#39;</span><span class="p">)</span>
+<span class="n">df_life_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Drop the unnecessary columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_life_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Indicator Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Indicator Code&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_life_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Merge the two data frames</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_gdp_melted</span><span class="p">,</span> 
+                     <span class="n">df_life_melted</span><span class="p">,</span> 
+                     <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Name&quot;</span><span class="p">,</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span>
+                     <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Name&quot;</span><span class="p">,</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span>
+                    <span class="p">)</span>
+<span class="n">df_merged</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Filter the data for Population</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pop</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SP.POP.TOTL&quot;</span><span class="p">]</span>
+<span class="n">df_pop</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pop</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Melt the dataframe for easy analysis</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pop_melted</span> <span class="o">=</span> <span class="n">df_pop</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="n">df_pop</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> 
+                            <span class="n">value_vars</span><span class="o">=</span><span class="n">df_pop</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> 
+                            <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> 
+                            <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+<span class="n">df_pop_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Drop the unnecessary columns</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pop_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Indicator Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Indicator Code&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pop_melted</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Merge the two data frames</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merged</span><span class="p">,</span> 
+                      <span class="n">df_pop_melted</span><span class="p">,</span> 
+                      <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Name&quot;</span><span class="p">,</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span>
+                      <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Name&quot;</span><span class="p">,</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span>
+                     <span class="p">)</span>
+<span class="n">df_merged2</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged3</span> <span class="o">=</span> <span class="n">df_merged2</span><span class="p">[</span><span class="n">df_merged2</span><span class="p">[</span><span class="s2">&quot;Population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged3</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged3</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged3</span><span class="p">[</span><span class="n">df_merged3</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2018&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="add-additional-variables-for-regions-and-sub-regions">
+<h2>Add additional variables for regions and sub-regions<a class="headerlink" href="#add-additional-variables-for-regions-and-sub-regions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_country</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/country_regions.csv&quot;</span><span class="p">)</span>
+<span class="n">df_country</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_country</span> <span class="o">=</span> <span class="n">df_country</span><span class="p">[[</span><span class="s2">&quot;ISO-alpha3 Code&quot;</span><span class="p">,</span><span class="s2">&quot;Region Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sub-region Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Country or Area&quot;</span><span class="p">]]</span>
+<span class="n">df_country</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merged3</span><span class="p">,</span> <span class="n">df_country</span><span class="p">,</span> 
+                      <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Code&quot;</span><span class="p">],</span>
+                      <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ISO-alpha3 Code&quot;</span><span class="p">],</span>
+                      <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+                     <span class="p">)</span>
+<span class="n">df_merged4</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span><span class="p">[</span><span class="s2">&quot;Region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span><span class="p">[</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span><span class="p">[</span><span class="n">df_merged4</span><span class="p">[</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged4</span><span class="p">[</span><span class="n">df_merged4</span><span class="p">[</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s2">&quot;Country Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_merged5</span> <span class="o">=</span> <span class="n">df_merged4</span><span class="p">[</span><span class="n">df_merged4</span><span class="p">[</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<span class="n">df_merged5</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_merged5</span><span class="p">[</span><span class="n">df_merged5</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2018&quot;</span><span class="p">],</span> 
+                 <span class="n">x</span><span class="o">=</span><span class="s2">&quot;GDP Per Capita&quot;</span><span class="p">,</span> 
+                 <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Life Expectancy&quot;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">,</span>
+                 <span class="n">size</span><span class="o">=</span><span class="s2">&quot;Population&quot;</span><span class="p">,</span>
+                 <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span> <span class="s2">&quot;Country Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1">#fig.show()</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fig.write_html(&quot;scatter.html&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-different-approach">
+<h2>A different Approach<a class="headerlink" href="#a-different-approach" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indicator_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SP.DYN.LE00.IN&quot;</span><span class="p">,</span><span class="s2">&quot;NY.GDP.PCAP.PP.CD&quot;</span><span class="p">,</span><span class="s2">&quot;SP.POP.TOTL&quot;</span><span class="p">]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">indicator_codes</span><span class="p">)]</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">indicator_codes</span><span class="p">:</span>
+    <span class="n">_df</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Indicator Code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">code</span><span class="p">]</span>
+    <span class="n">_df_melted</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="n">_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> 
+                                 <span class="n">value_vars</span><span class="o">=</span><span class="n">_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:],</span> 
+                                 <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> 
+                                 <span class="n">value_name</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+    <span class="n">_df_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Indicator Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Indicator Code&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_df_melted</span><span class="p">)</span>
+
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_all</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all2</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">]]</span>
+<span class="n">df_all2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all3</span> <span class="o">=</span> <span class="n">df_all2</span><span class="p">[</span><span class="n">df_all2</span><span class="p">[</span><span class="s2">&quot;SP.POP.TOTL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<span class="n">df_all3</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_all3</span><span class="p">,</span> <span class="n">df_country</span><span class="p">,</span> 
+                   <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Code&quot;</span><span class="p">],</span>
+                   <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ISO-alpha3 Code&quot;</span><span class="p">],</span>
+                   <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+                   <span class="p">)</span>
+
+<span class="n">df_all4</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all4</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all5</span> <span class="o">=</span> <span class="n">df_all4</span><span class="p">[</span><span class="n">df_all4</span><span class="p">[</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<span class="n">df_all5</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_all5</span><span class="p">[</span><span class="n">df_all5</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2018&quot;</span><span class="p">],</span>
+                 <span class="n">x</span><span class="o">=</span><span class="s2">&quot;NY.GDP.PCAP.PP.CD&quot;</span><span class="p">,</span> 
+                 <span class="n">y</span><span class="o">=</span><span class="s2">&quot;SP.DYN.LE00.IN&quot;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Sub-region Name&quot;</span><span class="p">,</span>
+                 <span class="n">size</span><span class="o">=</span><span class="s2">&quot;SP.POP.TOTL&quot;</span><span class="p">,</span>
+                 <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country Code&quot;</span><span class="p">,</span> <span class="s2">&quot;Country Name&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+<span class="n">fig2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fig2.write_html(&quot;scatter2.html&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">df_all5</span><span class="p">[</span><span class="n">df_all5</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2018&quot;</span><span class="p">],</span>  
+                    <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;Country Code&#39;</span><span class="p">,</span> 
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;SP.POP.TOTL&#39;</span><span class="p">,</span>
+                    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+                    <span class="n">scope</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">,</span>
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;Country Name&quot;</span>
+<span class="c1">#                    locationmode = &#39;USA-states&#39;,</span>
+<span class="c1">#                    labels={&#39;ST&#39;:&#39;State&#39;}</span>
+<span class="p">)</span>
+
+<span class="c1">#fig.update_layout(margin={&quot;r&quot;:0,&quot;t&quot;:0,&quot;l&quot;:0,&quot;b&quot;:0})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;choropleth.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapter-04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Chaojie Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
